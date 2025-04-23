@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Визуальная Магия 🌌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .slideshow {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://media.giphy.com/media/l0Exk8EUzSLsrErEQ/giphy.gif') repeat;
+      background-size: cover;
+      z-index: -1;
+      opacity: 0.3;
+      pointer-events: none;
+      animation: moveStars 60s linear infinite;
+    }
+
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: 2000px 2000px; }
+    }
+
+    .overlay-text {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 0 15px rgba(0,0,0,0.7);
+      font-size: 48px;
+      font-weight: bold;
+      animation: fadeInText 2s ease-in-out forwards;
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(-60%); }
+      to { opacity: 1; transform: translateY(-50%); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slideshow" id="slideshow">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1604079628041-b03e21f3e641?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600788907410-1bda92a274b7?auto=format&fit=crop&w=1920&q=80');"></div>
+  </div>
+
+  <div class="stars"></div>
+
+  <div class="overlay-text" id="overlayText">Добро пожаловать в магию</div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const overlayText = document.getElementById('overlayText');
+    const texts = [
+      "Добро пожаловать в магию",
+      "Погружаемся в атмосферу",
+      "Лови вайб космоса",
+      "Цвета мечты",
+      "Это просто ВАУ"
+    ];
+    let index = 0;
+
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+      overlayText.textContent = texts[index];
+    }, 5000);
+  </script>
+
+</body>
+</html>
+
+
+
+
